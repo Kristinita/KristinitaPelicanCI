@@ -48,14 +48,14 @@ matrix:
 
 # Multiple scripts
 # https://docs.travis-ci.com/user/speeding-up-the-build/#Parallelizing-your-builds-across-virtual-machines
-env:
-# “grunt default” = “grunt”;
-# Travis CI support blank value.
-- GRUNT_COMMAND='grunt'
-# If http-server run in background, “pipenv run pelican content -s publishconf.py”
-# command can't move “theme” folder.
-# I can't find method for http-server stop
-- GRUNT_COMMAND='grunt default && grunt http-server screenshots && grunt publish'
+# env:
+# # “grunt default” = “grunt”;
+# # Travis CI support blank value.
+# - GRUNT_COMMAND='grunt'
+# # If http-server run in background, “pipenv run pelican content -s publishconf.py”
+# # command can't move “theme” folder.
+# # I can't find method for http-server stop
+# - GRUNT_COMMAND='grunt default && grunt http-server screenshots && grunt publish'
 
 # Sections:
 # https://docs.travis-ci.com/user/customizing-the-build/#The-Build-Lifecycle
