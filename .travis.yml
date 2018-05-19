@@ -43,8 +43,12 @@ python: 3.6
 
 matrix:
   include:
-    - script: grunt default
-    - script: grunt default && grunt http-server screenshots && grunt publish
+    - script:
+      - grunt
+      - grunt validate remote travis
+    - script:
+      - grunt default && grunt http-server screenshots && grunt publish
+      - grunt validate remote travis
 
 # Multiple scripts
 # https://docs.travis-ci.com/user/speeding-up-the-build/#Parallelizing-your-builds-across-virtual-machines
@@ -112,17 +116,17 @@ install:
 - sudo apt-get install parallel
 - bash bash/travis-install.sh
 
-script:
-# [WARNING] Don't move these commands to “after_success” section,
-# exit code = 0 in this section always:
-# https://blog.travis-ci.com/after_script_behavior_changes/
-# https://github.com/travis-ci/travis-ci/issues/758
-# https://travis-ci.org/Kristinita/KristinitaPelican/jobs/368968780
-# [WARNING] I don't use Build Stages, because each stage run in new virtual machine,
-# no data persistence → it takes a lot of time, that install and compile all dependencies before stages.
-# This is unnecessary in my case.
-# https://docs.travis-ci.com/user/build-stages/#Data-persistence-between-stages-and-jobs
-- grunt validate remote travis
+# script:
+# # [WARNING] Don't move these commands to “after_success” section,
+# # exit code = 0 in this section always:
+# # https://blog.travis-ci.com/after_script_behavior_changes/
+# # https://github.com/travis-ci/travis-ci/issues/758
+# # https://travis-ci.org/Kristinita/KristinitaPelican/jobs/368968780
+# # [WARNING] I don't use Build Stages, because each stage run in new virtual machine,
+# # no data persistence → it takes a lot of time, that install and compile all dependencies before stages.
+# # This is unnecessary in my case.
+# # https://docs.travis-ci.com/user/build-stages/#Data-persistence-between-stages-and-jobs
+# - grunt validate remote travis
 
 # Automatically deploy site to GitHub Pages:
 # https://docs.travis-ci.com/user/deployment
