@@ -41,6 +41,11 @@ language: python
 
 python: 3.6
 
+matrix:
+  include:
+    - script: grunt default
+    - script: grunt default && grunt http-server screenshots && grunt publish
+
 # Multiple scripts
 # https://docs.travis-ci.com/user/speeding-up-the-build/#Parallelizing-your-builds-across-virtual-machines
 env:
@@ -108,7 +113,6 @@ install:
 - bash bash/travis-install.sh
 
 script:
-- $GRUNT_COMMAND
 # [WARNING] Don't move these commands to “after_success” section,
 # exit code = 0 in this section always:
 # https://blog.travis-ci.com/after_script_behavior_changes/
