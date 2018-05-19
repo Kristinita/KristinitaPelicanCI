@@ -81,7 +81,7 @@ addons:
     # https://askubuntu.com/a/1027128/582218
     - xsltproc
 
-# Cache not needed for this project.
+# Cache doesn't need for this project.
 # Cache needs, when 1 job install dependencies, another jobs runs test, using the cache:
 # https://docs.travis-ci.com/user/build-stages/warm-cache/
 # Cache upload after “script” phase:
