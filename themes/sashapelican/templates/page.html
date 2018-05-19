@@ -1,0 +1,148 @@
+<!-- @Author: Kristinita -->
+<!-- @Date:   2017-04-15 17:42:59 -->
+<!-- @Last Modified time: 2018-05-11 20:49:14 -->
+<!-- Differences pages and articles:
+1. In pages disable categories.
+2. Replace any files with “articles”. -->
+{% extends 'base.html' %}
+
+<!--==========================
+=            Head            =
+===========================-->
+
+<!-- Title phrase -->
+{% block base_pagetitle %}{{ page.pagetitle }}{% endblock %}
+<!-- Content of attribute <meta content="|"> -->
+{% block base_metacontent %}{{ page.metacontent }}{% endblock %}
+<!-- Open Graph image -->
+{% block base_opengraphimage %}{{ page.opengraphimage }}{% endblock %}
+
+<!--=============================
+=            Scripts            =
+==============================-->
+
+<!-- typo-reporter -->
+{% block base_typoreporter -%}
+	<script src="https://npmcdn.com/typo-reporter/lib/TypoReporter.min.js" defer></script>
+	{%- if page.lang == 'ru' -%}
+		<script src="{{SITEURL}}/{{ THEME_STATIC_DIR }}/js/typo-reporter/typo-reporter-ru.min.js" defer></script>
+	{% else %}
+		<script src="{{SITEURL}}/{{ THEME_STATIC_DIR }}/js/typo-reporter/typo-reporter-en.min.js" defer></script>
+	{%- endif -%}
+{%- endblock %}
+
+<!-- Tooltipster -->
+{% block base_tooltipster -%}
+	{%- if page.tooltipster == 'true' -%}
+		<script src="//cdn.jsdelivr.net/jquery.tooltipster/latest/js/tooltipster.bundle.min.js" defer></script>
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.tooltipster/latest/css/tooltipster.bundle.min.css" />
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+		<script src="{{SITEURL}}/{{ THEME_STATIC_DIR }}/js/Tooltipster/tooltip.min.js" defer></script>
+	{%- endif -%}
+{%- endblock %}
+
+<!-- Clipboard.js -->
+{% block base_clipboardjs -%}
+	{%- if page.clipboardjs == 'true' -%}
+		<script src="//cdn.jsdelivr.net/clipboard.js/latest/clipboard.min.js" defer></script>
+		<script src="{{SITEURL}}/{{ THEME_STATIC_DIR }}/js/Clipboard-js/Clipboard.min.js" defer></script>
+	{%- endif -%}
+{%- endblock %}
+
+<!-- Visualize -->
+{# JavaScript pie and bar charts:
+http://www.kellyking.me/projects/visualize/
+https://github.com/kellyk/visualize #}
+{% block base_visualize -%}
+	{%- if page.visualize == 'true' -%}
+		<script src="//gitcdn.xyz/repo/kellyk/visualize/master/visualize.js" defer></script>
+		<script src="{{SITEURL}}/{{ THEME_STATIC_DIR }}/js/Visualize/visualize-bar-chart.min.js" defer></script>
+		<script src="{{SITEURL}}/{{ THEME_STATIC_DIR }}/js/Visualize/visualize-pie-chart.min.js" defer></script>
+	{%- endif -%}
+{%- endblock %}
+
+<!-- [DEPRECATED] Modern browsers support “details/summary”: -->
+<!-- https://caniuse.com/#search=details -->
+{# <!-- Details-Polyfill -->
+<!-- http://ru.stackoverflow.com/a/498984/199934 -->
+{% block base_detailspolyfill -%}
+	{%- if page.detailspolyfill == 'true' -%}
+		<script src="{{SITEURL}}/js/Details-Polyfill/details1.js" defer></script>
+		<script src="{{SITEURL}}/js/Details-Polyfill/details2.js" defer></script>
+	{%- endif -%}
+{%- endblock %} #}
+
+<!-- Custom JavaScript, specific for article
+Article metadata variable -->
+{% block base_customjs -%}
+	{%- if page.customjs == 'true' -%}
+		<script src="{{SITEURL}}/js/personal/{{page.customjs1}}.min.js" defer></script>
+	{%- endif -%}
+{%- endblock %}
+
+
+<!--=========================
+=            CSS            =
+==========================-->
+
+<!-- Right or left Sasha icon -->
+{% block base_iconleftorright %}{{ page.iconleftorright }}{% endblock %}
+<!-- CSS of pages -->
+{% block base_pagecolors %}{{ page.pagecolors }}{% endblock %}
+<!-- Aside image -->
+{% block base_asideimage %}{{ page.asideimage }}{% endblock %}
+
+<!-- Custom CSS, specific for article -->
+{% block base_customcss -%}
+	{%- if page.customcss == 'true' -%}
+		<link rel="stylesheet" href="{{SITEURL}}/css/personal/{{page.customcss1}}.min.css">
+	{%- endif -%}
+{%- endblock %}
+
+{% block galleryblock -%}
+{% if page.photo_image %}<img src="{{ SITEURL }}/{{ page.photo_image[1] }}" />{% endif %}
+{%- endblock %}
+
+<!--=============================
+=            Content            =
+==============================-->
+
+<!-- Text in aside block -->
+{% block base_asidetitle %}{{ page.pagetitle }}{% endblock %}
+
+<!-- Content header -->
+{% block base_h1 %}{{ page.pagetitle }}{% endblock %}
+{% block base_noco %}{{ page.noco }}{% endblock %}
+{% block base_version %}{{ page.version }}{% endblock %}
+{% block base_date %}{{ page.date }}{% endblock %}
+{% block base_date_displayed %}{{ page.modified }}{% endblock %}
+
+<!-- Epigraph -->
+{% block base_epigraph -%}
+	{%- if page.epigraph == 'true' -%}
+	<div class="SashaEpigraph">
+		<em>{{ page.epigraphtext }}</em>
+	</div>
+	{% endif %}
+{%- endblock %}
+
+<!-- Title image -->
+{% block base_titleimage -%}
+	{%- if page.titleimage == 'true' -%}
+		<p><img alt="Header image" src="{{SITEURL}}/images/header/{{ page.titleimagename }}.jpg"></p>
+	{% endif %}
+{%- endblock %}
+
+<!-- Site content -->
+{% block base_content %}{{ page.content }}{% endblock %}
+
+<!-- Footer: new disgruntled Russian and sign
+E-Mail obfuscate: http://rot13.florianbersier.com/
+Get relative source path like https://github.com/kura/kura.io/blob/e8f2c6801a0013201d734aa1ac48d9ac92a40b96/ghastly/templates/page.html#L10 -->
+{% block base_new_russian %}
+	{% include 'includes/footer-pages.html' %}
+{% endblock %}
+
+{% block base_noscript %}
+	{% include 'includes/noscript-pages.html' %}
+{% endblock %}

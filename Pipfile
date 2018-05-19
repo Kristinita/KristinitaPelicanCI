@@ -1,0 +1,33 @@
+# [BUG] Not use quotation marks in Pipfile!
+# https://github.com/appveyor/ci/issues/2129
+# [NOTE] Don't modify values of "url", "verify_ssl" and "name" parameters.
+# These parameters for repository, from where the download is made.
+# https://pipenv.readthedocs.io/en/latest/advanced/#specifying-package-indexes
+
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+
+[dev-packages]
+pelican = "*"
+markdown = "*"
+"beautifulsoup4" = "*"
+pymdown-extensions = "*"
+pyembed-markdown = "*"
+markdown-newtab = {git = "https://github.com/Undeterminant/markdown-newtab.git", editable = true}
+md-environ = "*"
+markdown-blockdiag = "*"
+pip-review = "*"
+mdx-cite = {git = "https://github.com/aleray/mdx_cite.git", editable = true}
+mdx-custom-span-class = {git = "https://github.com/exaroth/mdx_custom_span_class.git", editable = true}
+markdown-downheader = "*"
+pip-licenses = "*"
+gitpython = "*"
+pyyaml = "*"
+bashate = "*"
+
+[requires]
+python_version = "3.6"

@@ -1,0 +1,16 @@
+################
+# Browserslist #
+################
+# Configuration for Autoprefixer, stylelint and some another tools:
+# https://github.com/browserslist/browserslist
+# Unofficial site:
+# http://browserl.ist/
+
+# Last 2 versions of any browser:
+Last 2 versions
+# Doesn't support any version of Internet Explorer:
+# https://github.com/browserslist/browserslist/issues/137
+# Reasons:
+# https://www.lifewire.com/why-do-people-hate-internet-explorer-3485786
+# https://www.quora.com/Is-Internet-Explorer-really-as-bad-as-everyone-tries-to-make-out
+not Explorer > 0
